@@ -24,6 +24,7 @@ bot.onText(/\/start/, (msg) => {
                 ['RECEBIMENTO'],
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
+                ['INFORMATIVO']
             ]
         })
     };
@@ -43,6 +44,7 @@ bot.onText(reg, (msg) => {
                 ['RECEBIMENTO'],
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
+                ['INFORMATIVO']
             ]
         })
     };
@@ -120,3 +122,13 @@ function acertoDeContas(){
     });
 }
 acertoDeContas();
+
+function informativo(){
+    bot.onText(/(INFORMATIVO)/, (msg) => {
+        const chatId = msg.chat.id;
+
+        bot.sendMessage(chatId, 'Segue um documento informativo de instruções ⤵')
+        bot.sendDocument(chatId, "./documents/informativoTb.txt");
+    });
+}
+informativo();
