@@ -11,7 +11,7 @@ const bot = new TelegramBot(TOKEN,
 
 bot.onText(/(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)/, (msg) => {
     const chatId = msg.chat.id;
-  
+
     bot.sendMessage(chatId, 
     `
     Recebemos sua mensagem senhor(a) ${msg.chat.first_name} Escolha uma das opções:
@@ -26,7 +26,7 @@ bot.onText(/(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)/, (msg) => {
     const opts = {
 
         reply_markup: JSON.stringify({
-          keyboard: [
+            keyboard: [
             ['RECEBIMENTO'],
             ['ATENDIMENTO'],
             ['ACERTO DE CONTAS']
@@ -40,20 +40,58 @@ bot.onText(/(RECEBIMENTO)/, (msg) => {
     const chatId = msg.chat.id;
     const phoneNumberURL = 'http://t.me/RecebimentoDocumentos';
 
-    bot.sendMessage(chatId, `Ola ${msg.chat.first_name}, segue o contato do Recebimento de Documentos! 
+    const opts = {
 
-➡ ${phoneNumberURL}
-
-Click no link para abrir o chat 👆`);
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{
+                    keyboardButtonUrl: '#a2fa4880',
+                    text: 'CLICK AQUI',
+                    callback_data: '1',
+                    url: phoneNumberURL
+                }]
+            ]
+        })
+    };
+    bot.sendMessage(msg.chat.id, `Click no botão abaixo ⤵`, opts);
 });
 
 bot.onText(/(ATENDIMENTO)/, (msg) => {
     const chatId = msg.chat.id;
     const phoneNumberURL = 'http://t.me/B_v01';
 
-    bot.sendMessage(chatId, `Ola ${msg.chat.first_name}, segue o contato do Atendimento! 
+    const opts = {
 
-➡ ${phoneNumberURL}
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{
+                    keyboardButtonUrl: '#a2fa4880',
+                    text: 'CLICK AQUI',
+                    callback_data: '1',
+                    url: phoneNumberURL
+                }]
+            ]
+        })
+    };
+    bot.sendMessage(msg.chat.id, `Click no botão abaixo ⤵`, opts);
+});
 
-Click no link para abrir o chat 👆`);
+bot.onText(/(ACERTO DE CONTAS)/, (msg) => {
+    const chatId = msg.chat.id;
+    const phoneNumberURL = 'http://t.me/B_v01';
+
+    const opts = {
+
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{
+                    keyboardButtonUrl: '#a2fa4880',
+                    text: 'CLICK AQUI',
+                    callback_data: '1',
+                    url: phoneNumberURL
+                }]
+            ]
+        })
+    };
+    bot.sendMessage(msg.chat.id, `Click no botão abaixo ⤵`, opts);
 });
