@@ -9,92 +9,113 @@ const bot = new TelegramBot(TOKEN,
     }
 );
 
-bot.onText(/(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)/, (msg) => {
+bot.onText(/\/start/, (msg) => {
+    const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
-    bot.sendMessage(chatId, 
-    `
-    Recebemos sua mensagem senhor(a) ${msg.chat.first_name} Escolha uma das opções:
-
-➡ RECEBIMENTO
-
-➡ ATENDIMENTO
-
-➡ ACERTO DE CONTAS
-    `);
-
+    bot.sendMessage(chatId, 'Bem vindo ao atendimento virtual TB')
+    bot.sendMessage(chatId, msgMenu.tellMenu);
+    
     const opts = {
-
+    
         reply_markup: JSON.stringify({
             keyboard: [
-            ['RECEBIMENTO'],
-            ['ATENDIMENTO'],
-            ['ACERTO DE CONTAS']
+                ['RECEBIMENTO'],
+                ['ATENDIMENTO'],
+                ['ACERTO DE CONTAS'],
             ]
         })
     };
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
 
-bot.onText(/(RECEBIMENTO)/, (msg) => {
+bot.onText(/(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)/, (msg) => {
+    const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
-    const phoneNumberURL = 'http://t.me/RecebimentoDocumentos';
+
+    bot.sendMessage(chatId, msgMenu.tellMenu);
 
     const opts = {
 
         reply_markup: JSON.stringify({
-            inline_keyboard: [
-                [{
-                    keyboardButtonUrl: '#a2fa4880',
-                    text: 'CLICK AQUI',
-                    callback_data: '1',
-                    url: phoneNumberURL
-                }]
+            keyboard: [
+                ['RECEBIMENTO'],
+                ['ATENDIMENTO'],
+                ['ACERTO DE CONTAS'],
             ]
         })
     };
-    bot.sendMessage(chatId, `Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h ⏱`)
-    bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts)
+    bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
 
-bot.onText(/(ATENDIMENTO)/, (msg) => {
-    const chatId = msg.chat.id;
-    const phoneNumberURL = 'http://t.me/B_v01';
+function recebimento(){
+    bot.onText(/(RECEBIMENTO)/, (msg) => {
+        const chatId = msg.chat.id;
+        const phoneNumberURL = 'http://t.me/RecebimentoDocumentos';
+        const msgMenu = require('./template/msg.js');
+    
+        const opts = {
+    
+            reply_markup: JSON.stringify({
+                inline_keyboard: [
+                    [{
+                        text: '👉 CLICK AQUI',
+                        callback_data: '1',
+                        url: phoneNumberURL
+                    }]
+                ]
+            })
+        };
+        bot.sendMessage(chatId, msgMenu.msgHorarioRecebimento)
+        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts)
+    });
+}
+recebimento();
 
-    const opts = {
+function atendimento(){
+    bot.onText(/(ATENDIMENTO)/, (msg) => {
+        const chatId = msg.chat.id;
+        const phoneNumberURL = 'http://t.me/B_v01';
+        const msgMenu = require('./template/msg.js');
+    
+        const opts = {
+    
+            reply_markup: JSON.stringify({
+                inline_keyboard: [
+                    [{
+                        text: '👉 CLICK AQUI',
+                        callback_data: '1',
+                        url: phoneNumberURL
+                    }]
+                ]
+            })
+        };
+        bot.sendMessage(chatId, msgMenu.msgHorarioAtendimento)
+        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
+    });
+} 
+atendimento();
 
-        reply_markup: JSON.stringify({
-            inline_keyboard: [
-                [{
-                    keyboardButtonUrl: '#a2fa4880',
-                    text: 'CLICK AQUI',
-                    callback_data: '1',
-                    url: phoneNumberURL
-                }]
-            ]
-        })
-    };
-    bot.sendMessage(chatId, `Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 21:20h e Domingo das 06:00 as 16:00h⏱`)
-    bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
-});
-
-bot.onText(/(ACERTO DE CONTAS)/, (msg) => {
-    const chatId = msg.chat.id;
-    const phoneNumberURL = 'http://t.me/B_v01';
-
-    const opts = {
-
-        reply_markup: JSON.stringify({
-            inline_keyboard: [
-                [{
-                    keyboardButtonUrl: '#a2fa4880',
-                    text: 'CLICK AQUI',
-                    callback_data: '1',
-                    url: phoneNumberURL
-                }]
-            ]
-        })
-    };
-    bot.sendMessage(chatId, `Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h ⏱`)
-    bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
-});
+function acertoDeContas(){
+    bot.onText(/(ACERTO DE CONTAS)/, (msg) => {
+        const chatId = msg.chat.id;
+        const phoneNumberURL = 'http://t.me/B_v01';
+        const msgMenu = require('./template/msg.js');
+    
+        const opts = {
+    
+            reply_markup: JSON.stringify({
+                inline_keyboard: [
+                    [{
+                        text: '👉 CLICK AQUI',
+                        callback_data: '1',
+                        url: phoneNumberURL,
+                    }]
+                ]
+            })
+        };
+        bot.sendMessage(chatId, msgMenu.msgHorarioAcerto)
+        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
+    });
+}
+acertoDeContas();
