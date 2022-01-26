@@ -1,8 +1,9 @@
 require('dotenv').config()
 
+const reg = /(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)|(Boa noite)|(boa noite)|(Boa tarde)|(boa tarde)/
+
 const TelegramBot = require('node-telegram-bot-api');   
 const TOKEN = process.env.TOKEN
-
 const bot = new TelegramBot(TOKEN, 
     {
         polling: true
@@ -29,7 +30,7 @@ bot.onText(/\/start/, (msg) => {
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
 
-bot.onText(/(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)/, (msg) => {
+bot.onText(reg, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
@@ -67,7 +68,7 @@ function recebimento(){
             })
         };
         bot.sendMessage(chatId, msgMenu.msgHorarioRecebimento)
-        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts)
+        bot.sendMessage(chatId, msgMenu.msgContact, opts)
     });
 }
 recebimento();
@@ -91,7 +92,7 @@ function atendimento(){
             })
         };
         bot.sendMessage(chatId, msgMenu.msgHorarioAtendimento)
-        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
+        bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
 } 
 atendimento();
@@ -115,7 +116,7 @@ function acertoDeContas(){
             })
         };
         bot.sendMessage(chatId, msgMenu.msgHorarioAcerto)
-        bot.sendMessage(chatId, `Click no botão abaixo ⤵`, opts);
+        bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
 }
 acertoDeContas();
