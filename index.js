@@ -57,3 +57,14 @@ bot.onText(/(ATENDIMENTO)/, (msg) => {
 
 Click no link para abrir o chat 👆`);
 });
+
+bot.onText(/(ACERTO DE CONTAS)/, (msg) => {
+    const chatId = msg.chat.id;
+    const phoneNumberURL = 'http://t.me/AcertoTb';
+
+    bot.sendMessage(chatId, `Ola ${msg.chat.first_name}, segue o contato do Acerto de Contas! 
+
+➡ ${phoneNumberURL}
+
+Click no link para abrir o chat 👆`);
+});
