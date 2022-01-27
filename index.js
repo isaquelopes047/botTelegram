@@ -14,16 +14,15 @@ bot.onText(/\/start/, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
-    bot.sendMessage(chatId, 'Bem vindo ao atendimento virtual TB')
     bot.sendMessage(chatId, msgMenu.tellMenu);
     
     const opts = {
-    
         reply_markup: JSON.stringify({
             keyboard: [
                 ['RECEBIMENTO'],
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
+                ['CARGAS'],
                 ['INFORMATIVO']
             ]
         })
@@ -35,20 +34,22 @@ bot.onText(reg, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
+    bot.sendMessage(chatId, `Bem vindo de volta ${msg.chat.first_name}`);
     bot.sendMessage(chatId, msgMenu.tellMenu);
 
     const opts = {
-
         reply_markup: JSON.stringify({
             keyboard: [
                 ['RECEBIMENTO'],
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
+                ['CARGAS'],
                 ['INFORMATIVO']
             ]
         })
     };
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
+    console.log(msg)
 });
 
 function recebimento(){
@@ -127,8 +128,65 @@ function informativo(){
     bot.onText(/(INFORMATIVO)/, (msg) => {
         const chatId = msg.chat.id;
 
-        bot.sendMessage(chatId, 'Segue um documento informativo de instruções ⤵')
-        bot.sendDocument(chatId, "./documents/informativoTb.txt");
+        /* const url = 'https://docs.google.com/document/d/1mb3YcSJg5yDU6Pc7BxLTtehNuLrcTfe5DkrpbptwC8g/export?format=pdf' */
+
+        bot.sendMessage(chatId, 'Segue um documento informativo de instruções 📑')
+        bot.sendDocument(chatId, 'documents/informativoTb.txt')
     });
 }
 informativo();
+
+/* SECTION CARGAS */
+bot.onText(/(CARGAS)/, (msg) => {
+    const msgMenu = require('./template/msg.js');
+    const chatId = msg.chat.id;
+
+    const UrlCargas = {
+        URLSc: 'http://t.me/B_v01',
+        URLSp: '',
+        URLPR_RS: '',
+        URLEscala: '',
+        URLNordeste: '',
+        URLEncarregado: '',
+    }
+
+    bot.sendMessage(chatId, msgMenu.msgCargas);
+    
+    const opts = {
+        reply_markup: JSON.stringify({
+            inline_keyboard: [
+                [{
+                    text: '🚛 CARGAS - SC',
+                    callback_data: '1',
+                    url: UrlCargas.URLSc,
+                }],
+                [{
+                    text: '🚛 CARGAS - SP',
+                    callback_data: '1',
+                    url: UrlCargas.URLSp,
+                }],
+                [{
+                    text: '🚛 CARGAS - PR / RS',
+                    callback_data: '1',
+                    url: UrlCargas.URLPR_RS,
+                }],
+                [{
+                    text: '🚛 CARGAS - Nordeste',
+                    callback_data: '1',
+                    url: UrlCargas.URLNordeste,
+                }],
+                [{
+                    text: '🚛 Mauro - Encarregado',
+                    callback_data: '1',
+                    url: UrlCargas.URLEncarregado,
+                }],
+                [{
+                    text: '🚛 Escala',
+                    callback_data: '1',
+                    url: UrlCargas.URLEscala,
+                }],
+            ]
+        })
+    };
+    bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
+});
