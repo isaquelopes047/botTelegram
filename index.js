@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const UrlCargas = require('./listContacts/list.js')
+
 const reg = /(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)|(Boa noite)|(boa noite)|(Boa tarde)|(boa tarde)/
 
 const TelegramBot = require('node-telegram-bot-api');   
@@ -137,56 +139,51 @@ function informativo(){
 informativo();
 
 /* SECTION CARGAS */
-bot.onText(/(CARGAS)/, (msg) => {
-    const msgMenu = require('./template/msg.js');
-    const chatId = msg.chat.id;
-
-    const UrlCargas = {
-        URLSc: 'http://t.me/B_v01',
-        URLSp: '',
-        URLPR_RS: '',
-        URLEscala: '',
-        URLNordeste: '',
-        URLEncarregado: '',
-    }
-
-    bot.sendMessage(chatId, msgMenu.msgCargas);
+function cargas(){
+    bot.onText(/(CARGAS)/, (msg) => {
+        const msgMenu = require('./template/msg.js');
+        const chatId = msg.chat.id;
     
-    const opts = {
-        reply_markup: JSON.stringify({
-            inline_keyboard: [
-                [{
-                    text: '🚛 CARGAS - SC',
-                    callback_data: '1',
-                    url: UrlCargas.URLSc,
-                }],
-                [{
-                    text: '🚛 CARGAS - SP',
-                    callback_data: '1',
-                    url: UrlCargas.URLSp,
-                }],
-                [{
-                    text: '🚛 CARGAS - PR / RS',
-                    callback_data: '1',
-                    url: UrlCargas.URLPR_RS,
-                }],
-                [{
-                    text: '🚛 CARGAS - Nordeste',
-                    callback_data: '1',
-                    url: UrlCargas.URLNordeste,
-                }],
-                [{
-                    text: '🚛 Mauro - Encarregado',
-                    callback_data: '1',
-                    url: UrlCargas.URLEncarregado,
-                }],
-                [{
-                    text: '🚛 Escala',
-                    callback_data: '1',
-                    url: UrlCargas.URLEscala,
-                }],
-            ]
-        })
-    };
-    bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
-});
+        bot.sendMessage(chatId, msgMenu.msgCargas);
+        
+        const opts = {
+            reply_markup: JSON.stringify({
+                inline_keyboard: [
+                    [{
+                        text: '🚛 CARGAS - SC',
+                        callback_data: '1',
+                        url: UrlCargas.URLSc,
+                    }],
+                    [{
+                        text: '🚛 CARGAS - SP',
+                        callback_data: '1',
+                        url: UrlCargas.URLSp,
+                    }],
+                    [{
+                        text: '🚛 CARGAS - PR / RS',
+                        callback_data: '1',
+                        url: UrlCargas.URLPR_RS,
+                    }],
+                    [{
+                        text: '🚛 CARGAS - Nordeste',
+                        callback_data: '1',
+                        url: UrlCargas.URLNordeste,
+                    }],
+                    [{
+                        text: '🚛 Mauro - Encarregado',
+                        callback_data: '1',
+                        url: UrlCargas.URLEncarregado,
+                    }],
+                    [{
+                        text: '🚛 Escala',
+                        callback_data: '1',
+                        url: UrlCargas.URLEscala,
+                    }],
+                ]
+            })
+        };
+        bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
+    });
+}
+cargas();
+
