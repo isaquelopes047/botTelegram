@@ -14,6 +14,8 @@ Recebemos sua mensagem, Escolha uma das opções:
 ➡ SETOR CARGAS
 
 ➡ INFORMATIVO
+
+➡ TI
     
 Ou digite o desejado`,
 
@@ -24,5 +26,5 @@ Ou digite o desejado`,
     msgCargas: 'Escolha a região que deseja ⤵',
     mshHorarioCargasSc : 'Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h e Domingo das 06:00 as 16:00h⏱',
 
-msgContact: `Segue o contato do setor desejado, Click no botão abaixo ⤵`,
+    msgContact: `Segue o contato do setor desejado, Click no botão abaixo ⤵`,
 }
