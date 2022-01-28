@@ -14,8 +14,6 @@ Recebemos sua mensagem, Escolha uma das opções:
 ➡ SETOR CARGAS
 
 ➡ INFORMATIVO
-
-➡ TI
     
 Ou digite o desejado`,
 
