@@ -5,6 +5,10 @@ const Urls = require("./listContacts/list.js");
 const reg = stringReg();
 const bot = createBot();
 
+function infoMsg(msg) {
+    console.log(msg.from.username, msg.from.id);
+}
+
 bot.onText(/\/start/, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
@@ -26,10 +30,6 @@ bot.onText(/\/start/, (msg) => {
     };
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 });
 
 
@@ -54,10 +54,6 @@ bot.onText(reg, (msg) => {
     };
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 });
 
 /* RegEx FOR START CHAT */
@@ -102,9 +98,6 @@ function recebimento(){
         bot.sendMessage(chatId, msgMenu.msgContact, opts)
     });
 
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 }
 recebimento();
 
@@ -132,10 +125,6 @@ function atendimento(){
         bot.sendMessage(chatId, msgMenu.msgHorarioAtendimento)
         bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 } 
 atendimento();
 
@@ -163,10 +152,6 @@ function acertoDeContas(){
         bot.sendMessage(chatId, msgMenu.msgHorarioAcerto)
         bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 }
 acertoDeContas();
 
@@ -194,10 +179,6 @@ function ti(){
         bot.sendMessage(chatId, msgMenu.msgHorarioTi)
         bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 }
 ti();
 
@@ -275,8 +256,4 @@ bot.onText(/(CARGAS)/, (msg) => {
     };
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
-
-    function infoMsg(msg) {
-        console.log(msg.from.username, msg.from.id);
-    }
 });
