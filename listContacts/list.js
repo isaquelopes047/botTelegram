@@ -8,7 +8,6 @@ const Urls = {
     _URLEscala: '',
     _URLNordeste: '',
     _URLEncarregado: '',
-
     _URLRecebimento: 'http://t.me/RecebimentoDocumentos',
     _URLAtendimento: 'http://t.me/B_v01',
     _URLAcertoDeContas: 'http://t.me/AcertoTb',

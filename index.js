@@ -1,16 +1,9 @@
+
 require('dotenv').config()
 
-const reg = /(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)|(Boa noite)|(boa noite)|(Boa tarde)|(boa tarde)/
-
 const Urls = require("./listContacts/list.js");
-
-const TelegramBot = require('node-telegram-bot-api');   
-const TOKEN = process.env.TOKEN
-const bot = new TelegramBot(TOKEN, 
-    {
-        polling: true
-    }
-);
+const reg = stringReg();
+const bot = createBot();
 
 bot.onText(/\/start/, (msg) => {
     const msgMenu = require('./template/msg.js');
@@ -31,6 +24,7 @@ bot.onText(/\/start/, (msg) => {
     };
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
+
 
 bot.onText(reg, (msg) => {
     const msgMenu = require('./template/msg.js');
@@ -54,20 +48,38 @@ bot.onText(reg, (msg) => {
     console.log(msg)
 });
 
+/* RegEx FOR START CHAT */
+function stringReg() {
+    return /(Bom dia)|(bom dia)|(Oi)|(oi)|(Ola)|(Boa noite)|(boa noite)|(Boa tarde)|(boa tarde)/;
+}
+
+/* CREATE NEW BOT USING TOKEN */
+function createBot() {
+    const TelegramBot = require('node-telegram-bot-api');
+    const TOKEN = process.env.TOKEN;
+    const bot = new TelegramBot(TOKEN,
+        {
+            polling: true
+        }
+    );
+    return bot;
+}
+
 function recebimento(){
     bot.onText(/(RECEBIMENTO)/, (msg) => {
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
         const opts = {
-    
             reply_markup: JSON.stringify({
                 inline_keyboard: [
-                    [{
-                        text: '👉 CLICK AQUI',
-                        callback_data: '1',
-                        url: Urls._URLRecebimento
-                    }]
+                    [
+                        {
+                            text: '👉 CLICK AQUI',
+                            callback_data: '1',
+                            url: Urls._URLRecebimento
+                        }
+                    ]
                 ]
             })
         };
@@ -86,11 +98,13 @@ function atendimento(){
     
             reply_markup: JSON.stringify({
                 inline_keyboard: [
-                    [{
-                        text: '👉 CLICK AQUI',
-                        callback_data: '1',
-                        url: Urls._URLAtendimento
-                    }]
+                    [
+                        {
+                            text: '👉 CLICK AQUI',
+                            callback_data: '1',
+                            url: Urls._URLAtendimento
+                        }
+                    ]
                 ]
             })
         };
@@ -109,11 +123,13 @@ function acertoDeContas(){
     
             reply_markup: JSON.stringify({
                 inline_keyboard: [
-                    [{
-                        text: '👉 CLICK AQUI',
-                        callback_data: '1',
-                        url: Urls._URLAcertoDeContas,
-                    }]
+                    [
+                        {
+                            text: '👉 CLICK AQUI',
+                            callback_data: '1',
+                            url: Urls._URLAcertoDeContas,
+                        }
+                    ]
                 ]
             })
         };
@@ -145,36 +161,48 @@ bot.onText(/(CARGAS)/, (msg) => {
     const opts = {
         reply_markup: JSON.stringify({
             inline_keyboard: [
-                [{
-                    text: '🚛 CARGAS - SC',
-                    callback_data: '1',
-                    url: Urls._URLSc,
-                }],
-                [{
-                    text: '🚛 CARGAS - SP',
-                    callback_data: '1',
-                    url: Urls._URLSp,
-                }],
-                [{
-                    text: '🚛 CARGAS - PR / RS',
-                    callback_data: '1',
-                    url: Urls._URLPR_RS,
-                }],
-                [{
-                    text: '🚛 CARGAS - Nordeste',
-                    callback_data: '1',
-                    url: Urls._URLNordeste,
-                }],
-                [{
-                    text: '🚛 Mauro - Encarregado',
-                    callback_data: '1',
-                    url: Urls._URLEncarregado,
-                }],
-                [{
-                    text: '🚛 Escala',
-                    callback_data: '1',
-                    url: Urls._URLEscala,
-                }],
+                [
+                    {
+                        text: '🚛 CARGAS - SC',
+                        callback_data: '1',
+                        url: Urls._URLSc,
+                    }
+                ],
+                [
+                    {
+                        text: '🚛 CARGAS - SP',
+                        callback_data: '1',
+                        url: Urls._URLSp,
+                    }
+                ],
+                [
+                    {
+                        text: '🚛 CARGAS - PR / RS',
+                        callback_data: '1',
+                        url: Urls._URLPR_RS,
+                    }
+                ],
+                [
+                    {
+                        text: '🚛 CARGAS - Nordeste',
+                        callback_data: '1',
+                        url: Urls._URLNordeste,
+                    }
+                ],
+                [
+                    {
+                        text: '🚛 Mauro - Encarregado',
+                        callback_data: '1',
+                        url: Urls._URLEncarregado,
+                    }
+                ],
+                [
+                    {
+                        text: '🚛 Escala',
+                        callback_data: '1',
+                        url: Urls._URLEscala,
+                    }
+                ],
             ]
         })
     };
