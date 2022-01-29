@@ -24,7 +24,6 @@ bot.onText(/\/start/, (msg) => {
                 ['CARGAS'],
                 ['PROCEDIMENTO'],
                 ['TI'],
-                
             ]
         })
     };
