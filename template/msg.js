@@ -13,13 +13,16 @@ Recebemos sua mensagem, Escolha uma das opções:
 
 ➡ SETOR CARGAS
 
-➡ INFORMATIVO
+➡ TI
+
+➡ PROCEDIMENTO
     
 Ou digite o desejado`,
 
     msgHorarioAcerto: 'Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h ⏱',
     msgHorarioAtendimento: 'Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 21:20h e Domingo das 06:00 as 16:00h⏱',
     msgHorarioRecebimento: 'Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h ⏱',
+    msgHorarioTi: 'Lembrando que o horario de atendimento é de Segunda a Sexta das 07:00h as 18:00h e Sabados das 08:00 ao 12:00h⏱',
 
     msgCargas: 'Escolha a região que deseja ⤵',
     mshHorarioCargasSc : 'Lembrando que o horario de atendimento é de Segunda a Sabado das 05:00h as 22:00h e Domingo das 06:00 as 16:00h⏱',

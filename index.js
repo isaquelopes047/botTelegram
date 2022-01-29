@@ -18,11 +18,18 @@ bot.onText(/\/start/, (msg) => {
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
                 ['CARGAS'],
-                ['INFORMATIVO']
+                ['PROCEDIMENTO'],
+                ['TI'],
+                
             ]
         })
     };
+    infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 });
 
 
@@ -40,12 +47,17 @@ bot.onText(reg, (msg) => {
                 ['ATENDIMENTO'],
                 ['ACERTO DE CONTAS'],
                 ['CARGAS'],
-                ['INFORMATIVO']
+                ['PROCEDIMENTO'],
+                ['TI'],
             ]
         })
     };
+    infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
-    console.log(msg)
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 });
 
 /* RegEx FOR START CHAT */
@@ -62,7 +74,8 @@ function createBot() {
             polling: true
         }
     );
-    return bot;
+    console.log('Servidor aberto')
+    return bot
 }
 
 function recebimento(){
@@ -83,9 +96,15 @@ function recebimento(){
                 ]
             })
         };
+
+        infoMsg(msg);
         bot.sendMessage(chatId, msgMenu.msgHorarioRecebimento)
         bot.sendMessage(chatId, msgMenu.msgContact, opts)
     });
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 }
 recebimento();
 
@@ -108,9 +127,15 @@ function atendimento(){
                 ]
             })
         };
+
+        infoMsg(msg);
         bot.sendMessage(chatId, msgMenu.msgHorarioAtendimento)
         bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 } 
 atendimento();
 
@@ -133,21 +158,63 @@ function acertoDeContas(){
                 ]
             })
         };
+
+        infoMsg(msg)
         bot.sendMessage(chatId, msgMenu.msgHorarioAcerto)
         bot.sendMessage(chatId, msgMenu.msgContact, opts);
     });
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 }
 acertoDeContas();
 
+function ti(){
+    bot.onText(/(TI)/, (msg) => {
+        const chatId = msg.chat.id;
+        const msgMenu = require('./template/msg.js');
+    
+        const opts = {
+    
+            reply_markup: JSON.stringify({
+                inline_keyboard: [
+                    [
+                        {
+                            text: '👉 CLICK AQUI',
+                            callback_data: '1',
+                            url: Urls._URLTi,
+                        },
+                    ]
+                ]
+            })
+        };
+
+        infoMsg(msg)
+        bot.sendMessage(chatId, msgMenu.msgHorarioTi)
+        bot.sendMessage(chatId, msgMenu.msgContact, opts);
+    });
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
+}
+ti();
+
 function informativo(){
-    bot.onText(/(INFORMATIVO)/, (msg) => {
+    bot.onText(/(PROCEDIMENTO)/, (msg) => {
         const chatId = msg.chat.id;
 
         /* const url = 'https://docs.google.com/document/d/1mb3YcSJg5yDU6Pc7BxLTtehNuLrcTfe5DkrpbptwC8g/export?format=pdf' */
 
-        bot.sendMessage(chatId, 'Segue um documento informativo de instruções 📑')
+        infoMsg(msg)
+        bot.sendMessage(chatId, '<b>Segue um documento informativo de instruções</b> 📑', {parse_mode: 'HTML'})
         bot.sendDocument(chatId, 'documents/informativoTb.txt')
     });
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id, 'Solicitado Documento de informação');
+    }
 }
 informativo();
 
@@ -206,5 +273,10 @@ bot.onText(/(CARGAS)/, (msg) => {
             ]
         })
     };
+    infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
+
+    function infoMsg(msg) {
+        console.log(msg.from.username, msg.from.id);
+    }
 });
