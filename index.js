@@ -18,7 +18,7 @@ bot.onText(/\/start/, (msg) => {
     
     const opts = keyboardOptions();
     infoMsg(msg)
-    bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
+    bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
 });
 
 // CHAT MENU
@@ -31,7 +31,7 @@ bot.onText(reg, (msg) => {
 
     const opts = keyboardOptions();
     infoMsg(msg)
-    bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
+    bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
 });
 
 function keyboardOptions() {
