@@ -9,29 +9,19 @@ function infoMsg(msg) {
     console.log(msg.from.username, msg.from.id);
 }
 
+// START CHAT
 bot.onText(/\/start/, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
     bot.sendMessage(chatId, msgMenu.tellMenu);
     
-    const opts = {
-        reply_markup: JSON.stringify({
-            keyboard: [
-                ['RECEBIMENTO'],
-                ['ATENDIMENTO'],
-                ['ACERTO DE CONTAS'],
-                ['CARGAS'],
-                ['PROCEDIMENTO'],
-                ['TI'],
-            ]
-        })
-    };
+    const opts = keyboardOptions();
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
 
-
+// CHAT MENU
 bot.onText(reg, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
@@ -39,21 +29,25 @@ bot.onText(reg, (msg) => {
     bot.sendMessage(chatId, `Bem vindo de volta ${msg.chat.first_name}`);
     bot.sendMessage(chatId, msgMenu.tellMenu);
 
-    const opts = {
-        reply_markup: JSON.stringify({
-            keyboard: [
-                ['RECEBIMENTO'],
-                ['ATENDIMENTO'],
-                ['ACERTO DE CONTAS'],
-                ['CARGAS'],
-                ['PROCEDIMENTO'],
-                ['TI'],
-            ]
-        })
-    };
+    const opts = keyboardOptions();
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Click na opção em seu teclado ⤵`, opts);
 });
+
+function keyboardOptions() {
+    return {
+        reply_markup: JSON.stringify({
+            keyboard: [
+                ['Recebimento'],
+                ['Atendimento'],
+                ['Acerto de contas'],
+                ['Cargas'],
+                ['Procedimento'],
+                ['Ti'],
+            ]
+        })
+    };
+}
 
 /* RegEx FOR START CHAT */
 function stringReg() {
@@ -74,7 +68,7 @@ function createBot() {
 }
 
 function recebimento(){
-    bot.onText(/(RECEBIMENTO)/, (msg) => {
+    bot.onText(/Recebimento/, (msg) => {
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
@@ -101,7 +95,7 @@ function recebimento(){
 recebimento();
 
 function atendimento(){
-    bot.onText(/(ATENDIMENTO)/, (msg) => {
+    bot.onText(/(Atendimento)/, (msg) => {
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
@@ -128,7 +122,7 @@ function atendimento(){
 atendimento();
 
 function acertoDeContas(){
-    bot.onText(/(ACERTO DE CONTAS)/, (msg) => {
+    bot.onText(/(Acerto de contas)/, (msg) => {
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
@@ -155,7 +149,7 @@ function acertoDeContas(){
 acertoDeContas();
 
 function ti(){
-    bot.onText(/(TI)/, (msg) => {
+    bot.onText(/(Ti)/, (msg) => {
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
@@ -182,7 +176,7 @@ function ti(){
 ti();
 
 function informativo(){
-    bot.onText(/(PROCEDIMENTO)/, (msg) => {
+    bot.onText(/(Procedimento)/, (msg) => {
         const chatId = msg.chat.id;
 
         /* const url = 'https://docs.google.com/document/d/1mb3YcSJg5yDU6Pc7BxLTtehNuLrcTfe5DkrpbptwC8g/export?format=pdf' */
@@ -199,7 +193,7 @@ function informativo(){
 informativo();
 
 /* SECTION CARGAS */
-bot.onText(/(CARGAS)/, (msg) => {
+bot.onText(/(Cargas)/, (msg) => {
     const msgMenu = require('./template/msg.js');
     const chatId = msg.chat.id;
 
