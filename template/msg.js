@@ -5,17 +5,17 @@ Atendimento VirtualTB, tudo bem? 🤖
 
 Recebemos sua mensagem, Escolha uma das opções:
     
-➡ RECEBIMENTO
+➡ Recebimento
     
-➡ ATENDIMENTO
+➡ Atendimento
     
-➡ ACERTO DE CONTAS
+➡ Acerto de contas
 
-➡ SETOR CARGAS
+➡ Setor de cargas
 
-➡ TI
+➡ Ti
 
-➡ PROCEDIMENTO
+➡ Procedimento
     
 Ou digite o desejado`,
 
