@@ -90,7 +90,7 @@ function recebimento(){
                 inline_keyboard: [
                     [
                         {
-                            text: '👉 CLICK AQUI',
+                            text: '👉 CLICK AQUI - Recebimento',
                             callback_data: '1',
                             url: Urls._URLRecebimento
                         }
@@ -113,8 +113,7 @@ function atendimento(){
         const chatId = msg.chat.id;
         const msgMenu = require('./template/msg.js');
     
-        const opts = {
-    
+        const opts = {  
             reply_markup: JSON.stringify({
                 inline_keyboard: [
                     [
@@ -236,42 +235,42 @@ bot.onText(/(Cargas)/, (msg) => {
             inline_keyboard: [
                 [
                     {
-                        text: '🚛 CARGAS - SC',
+                        text: '🚚 CARGAS - SC',
                         callback_data: '1',
                         url: Urls._URLSc,
                     }
                 ],
                 [
                     {
-                        text: '🚛 CARGAS - SP',
+                        text: '🚚 CARGAS - SP',
                         callback_data: '1',
                         url: Urls._URLSp,
                     }
                 ],
                 [
                     {
-                        text: '🚛 CARGAS - PR / RS',
+                        text: '🚚 CARGAS - PR / RS',
                         callback_data: '1',
                         url: Urls._URLPR_RS,
                     }
                 ],
                 [
                     {
-                        text: '🚛 CARGAS - Nordeste',
+                        text: '🚚 CARGAS - Nordeste',
                         callback_data: '1',
                         url: Urls._URLNordeste,
                     }
                 ],
                 [
                     {
-                        text: '🚛 Mauro - Encarregado',
+                        text: '🤵🏻 Mauro - Encarregado',
                         callback_data: '1',
                         url: Urls._URLEncarregado,
                     }
                 ],
                 [
                     {
-                        text: '🚛 Escala',
+                        text: '📃 Escala',
                         callback_data: '1',
                         url: Urls._URLEscala,
                     }
