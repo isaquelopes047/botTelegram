@@ -1,5 +1,6 @@
 
 require('dotenv').config()
+const nodeSchedule = require('node-schedule');
 
 const Urls = require("./listContacts/list.js");
 const reg = stringReg();
@@ -19,6 +20,10 @@ bot.onText(/\/start/, (msg) => {
     const opts = keyboardOptions();
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
+
+    const job = nodeSchedule.scheduleJob('0 0 0/6 1/1 * ? *', () => {
+        bot.sendMessage(msg.chat.id, `Lembrando que as fotos dos comprovantes de entregas devem ser enviadas o mais rapido possivel ao setor de recebimento`);
+    });
 });
 
 // CHAT MENU
@@ -32,6 +37,10 @@ bot.onText(reg, (msg) => {
     const opts = keyboardOptions();
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
+
+    const job = nodeSchedule.scheduleJob('0 0 0/6 1/1 * ? *', () => {
+        bot.sendMessage(msg.chat.id, `Lembrando que as fotos dos comprovantes de entregas devem ser enviadas o mais rapido possivel ao setor de recebimento`);
+    });
 });
 
 function keyboardOptions() {
@@ -154,23 +163,36 @@ function ti(){
         const msgMenu = require('./template/msg.js');
     
         const opts = {
-    
             reply_markup: JSON.stringify({
                 inline_keyboard: [
                     [
                         {
-                            text: '👉 CLICK AQUI',
+                            text: '🖥 Isaque - TI',
                             callback_data: '1',
-                            url: Urls._URLTi,
-                        },
-                    ]
+                            url: Urls._URLTiUm,
+                        }
+                    ],
+                    [
+                        {
+                            text: '🖥 Anderson - TI',
+                            callback_data: '1',
+                            url: Urls._URLTiDois,
+                        }
+                    ],
+                    [
+                        {
+                            text: '🖥 Eduir - TI',
+                            callback_data: '1',
+                            url: Urls._URLTiTres,
+                        }
+                    ],
                 ]
             })
         };
 
         infoMsg(msg)
         bot.sendMessage(chatId, msgMenu.msgHorarioTi)
-        bot.sendMessage(chatId, msgMenu.msgContact, opts);
+        bot.sendMessage(msg.chat.id, `Click nas opções na tela 📲`, opts);
     });
 }
 ti();

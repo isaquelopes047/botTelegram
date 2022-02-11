@@ -11,7 +11,10 @@ const Urls = {
     _URLRecebimento: 'http://t.me/RecebimentoDocumentos',
     _URLAtendimento: 'http://t.me/B_v01',
     _URLAcertoDeContas: 'http://t.me/AcertoTb',
-    _URLTi: '',
+    _URLTiUm: 'http://t.me/IsaqueTB',
+    _URLTiDois: '',
+    _URLTiTres: '',
+
 }
 
 module.exports = Urls;
