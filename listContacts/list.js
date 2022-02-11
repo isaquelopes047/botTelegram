@@ -12,7 +12,7 @@ const Urls = {
     _URLAtendimento: 'http://t.me/B_v01',
     _URLAcertoDeContas: 'http://t.me/AcertoTb',
     _URLTiUm: 'http://t.me/IsaqueTB',
-    _URLTiDois: '',
+    _URLTiDois: 'http://t.me/AndersonTBinfra',
     _URLTiTres: '',
 
 }

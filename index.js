@@ -21,6 +21,7 @@ bot.onText(/\/start/, (msg) => {
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
 
+    // mesangem de 6 em 6 horas
     const job = nodeSchedule.scheduleJob('0 0 0/6 1/1 * ? *', () => {
         bot.sendMessage(msg.chat.id, `Lembrando que as fotos dos comprovantes de entregas devem ser enviadas o mais rapido possivel ao setor de recebimento`);
     });
@@ -38,11 +39,13 @@ bot.onText(reg, (msg) => {
     infoMsg(msg)
     bot.sendMessage(msg.chat.id, `Ou digite o desejado`, opts);
 
+    // mesangem de 6 em 6 horas
     const job = nodeSchedule.scheduleJob('0 0 0/6 1/1 * ? *', () => {
         bot.sendMessage(msg.chat.id, `Lembrando que as fotos dos comprovantes de entregas devem ser enviadas o mais rapido possivel ao setor de recebimento`);
     });
 });
 
+// Template Menu Kayboard
 function keyboardOptions() {
     return {
         reply_markup: JSON.stringify({
@@ -76,6 +79,7 @@ function createBot() {
     return bot
 }
 
+// Block Recebimento
 function recebimento(){
     bot.onText(/Recebimento/, (msg) => {
         const chatId = msg.chat.id;
@@ -103,6 +107,7 @@ function recebimento(){
 }
 recebimento();
 
+// Block Atendimento
 function atendimento(){
     bot.onText(/(Atendimento)/, (msg) => {
         const chatId = msg.chat.id;
@@ -130,6 +135,7 @@ function atendimento(){
 } 
 atendimento();
 
+// Block Acerto de Contas
 function acertoDeContas(){
     bot.onText(/(Acerto de contas)/, (msg) => {
         const chatId = msg.chat.id;
@@ -157,6 +163,8 @@ function acertoDeContas(){
 }
 acertoDeContas();
 
+
+// Block Ti
 function ti(){
     bot.onText(/(Ti)/, (msg) => {
         const chatId = msg.chat.id;
@@ -197,6 +205,8 @@ function ti(){
 }
 ti();
 
+
+// Dowloader Document
 function informativo(){
     bot.onText(/(Procedimento)/, (msg) => {
         const chatId = msg.chat.id;
